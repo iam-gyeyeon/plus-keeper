@@ -1,4 +1,9 @@
 package com.project.plus_keeper.member.repository;
 
-public class MemberRepository {
+import com.project.plus_keeper.member.domain.Member;
+
+import java.util.List;
+
+public interface MemberRepository {
+    List<Member> findAll();
 }
