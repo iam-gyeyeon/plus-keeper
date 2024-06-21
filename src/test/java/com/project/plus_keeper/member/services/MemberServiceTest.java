@@ -1,16 +1,16 @@
 package com.project.plus_keeper.member.services;
 
 import com.project.plus_keeper.member.domain.Member;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.logging.Logger;
 
 import static java.util.logging.Logger.getLogger;
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 class MemberServiceTest {
@@ -28,4 +28,19 @@ class MemberServiceTest {
         //then
         list.forEach(member -> logger.info(member.getMemberId()));
     }
+
+    @Test
+    void findByMemberId(){
+        //given
+        String username = "gykim";
+
+        //when
+        Optional<Member> findMember = memberService.findByMemberId(username);
+        logger.info("findMember: " + findMember.toString());
+        Assertions.assertThat(username).isEqualTo(findMember.map(Member::getMemberId).orElse(null));
+
+        //then
+        logger.info(findMember.map(Member::getMemberId).orElse(null));
+    }
+
 }
