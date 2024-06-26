@@ -1,14 +1,20 @@
 package com.project.plus_keeper.member.controller;
 
+import com.project.plus_keeper.member.code.MemberErrorCode;
 import com.project.plus_keeper.member.domain.Member;
 import com.project.plus_keeper.member.domain.MemberForm;
+import com.project.plus_keeper.member.exception.MemberException;
 import com.project.plus_keeper.member.services.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+
+import static com.project.plus_keeper.util.OptionalUtils.processOptional;
+
 
 @RequestMapping("/api")
 @Controller
@@ -31,15 +37,18 @@ public class MemberController {
 
     @PostMapping("/member/join")
     @ResponseBody
-    public String join(@RequestBody MemberForm.Request.Add member){
-        return null;
+    public ResponseEntity<?> join(@RequestBody MemberForm.Request.Add member) {
+        Optional<Member> memberOptional = memberService.login(member);
+        return processOptional(memberOptional, () -> new MemberException(MemberErrorCode.MEMBER_NOT_FOUND));
     }
 
     @ResponseBody
     @PostMapping("/member/{memberId}")
-    public Optional<Member> getMember(@PathVariable String memberId) {
-        return memberService.findByMemberId(memberId);
+    public ResponseEntity<?> getMember(@PathVariable String memberId) {
+        Optional<Member> findMember = memberService.findByMemberId(memberId);
+        return processOptional(findMember, () -> new MemberException(MemberErrorCode.MEMBER_NOT_FOUND));
     }
+
 
 
 }

@@ -1,7 +1,6 @@
 package com.project.plus_keeper.member.services;
 
-import com.project.plus_keeper.member.code.MemberErrorCode;
-import com.project.plus_keeper.member.exception.MemberNotFoundException;
+import com.project.plus_keeper.member.domain.MemberForm;
 import com.project.plus_keeper.member.domain.Member;
 import com.project.plus_keeper.member.repository.MemberRepository;
 import org.springframework.stereotype.Service;
@@ -22,17 +21,19 @@ public class MemberService {
         return memberRepository.findAll();
     }
 
-    public Optional<Member> findByMemberId(String memberId){
-        Optional<Member> findMember = memberRepository.findByMemberId(memberId);
-        return handleMemberOptional(findMember);
+    public Optional<Member> login(MemberForm.Request.Add member) {
+        Optional<Member> optionalMember = findByMemberId(member.getMemberId());
+
+        if (optionalMember.isPresent()) {
+            Member findMember = optionalMember.get();
+            if (member.getPassword().equals(findMember.getPassword())) {
+                return Optional.of(findMember);
+            }
+        }
+        return Optional.empty();
     }
 
-
-    private Optional<Member> handleMemberOptional(Optional<Member> optionalMember) {
-        if (optionalMember.isPresent()) {
-            return optionalMember;
-        } else {
-            throw new MemberNotFoundException(MemberErrorCode.MEMBER_NOT_FOUND);
-        }
+    public Optional<Member> findByMemberId(String memberId){
+        return memberRepository.findByMemberId(memberId);
     }
 }

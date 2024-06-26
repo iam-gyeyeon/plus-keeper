@@ -1,11 +1,11 @@
 package com.project.plus_keeper.member.services;
 
 import com.project.plus_keeper.member.domain.Member;
+import com.project.plus_keeper.member.domain.MemberForm.Request;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-
 import java.util.List;
 import java.util.Optional;
 import java.util.logging.Logger;
@@ -41,6 +41,23 @@ class MemberServiceTest {
 
         //then
         logger.info(findMember.map(Member::getMemberId).orElse(null));
+    }
+
+    @Test
+    void login(){
+        //given
+        Request.Add member = new Request.Add();
+        member.setMemberId("gykim");
+        member.setPassword("123");
+
+        //when
+        Optional<Member> memberOptional = memberService.login(member);
+        //then
+        if (memberOptional.isPresent()) {
+            logger.info("findMember: " + memberOptional.get().getMemberId());
+        } else {
+            logger.info(memberOptional.toString());
+        }
     }
 
 }
