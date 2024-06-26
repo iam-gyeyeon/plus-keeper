@@ -1,4 +1,4 @@
-package com.project.plus_keeper.code;
+package com.project.plus_keeper.member.code;
 
 import lombok.Getter;
 

@@ -16,5 +16,7 @@ public class Member {
     private String password;
     private String lockYn;
     private String regId;
+    private String regDt;
     private String modId;
+    private String modDt;
 }

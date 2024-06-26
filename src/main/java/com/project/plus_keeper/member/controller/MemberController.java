@@ -1,16 +1,16 @@
 package com.project.plus_keeper.member.controller;
 
 import com.project.plus_keeper.member.domain.Member;
+import com.project.plus_keeper.member.domain.MemberForm;
 import com.project.plus_keeper.member.services.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
 
+@RequestMapping("/api")
 @Controller
 public class MemberController {
 
@@ -24,15 +24,22 @@ public class MemberController {
 
 
     @ResponseBody
-    @PostMapping("/api/members")
+    @PostMapping("/members")
     public List<Member> list() {
         return memberService.findAllMembers();
     }
 
+    @PostMapping("/member/join")
     @ResponseBody
-    @PostMapping("/api/member/{memberId}")
+    public String join(@RequestBody MemberForm.Request.Add member){
+        return null;
+    }
+
+    @ResponseBody
+    @PostMapping("/member/{memberId}")
     public Optional<Member> getMember(@PathVariable String memberId) {
         return memberService.findByMemberId(memberId);
     }
+
 
 }

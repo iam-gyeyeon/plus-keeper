@@ -1,6 +1,6 @@
-package com.project.plus_keeper.exception;
+package com.project.plus_keeper.member.exception;
 
-import com.project.plus_keeper.code.MemberErrorCode;
+import com.project.plus_keeper.member.code.MemberErrorCode;
 import lombok.Getter;
 
 
