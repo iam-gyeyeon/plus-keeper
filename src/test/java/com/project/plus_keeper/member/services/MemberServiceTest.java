@@ -46,7 +46,7 @@ class MemberServiceTest {
     @Test
     void login(){
         //given
-        Request.Add member = new Request.Add();
+        Request.Login member = new Request.Login();
         member.setMemberId("gykim");
         member.setPassword("123");
 

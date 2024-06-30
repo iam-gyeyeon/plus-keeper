@@ -21,7 +21,7 @@ public class MemberService {
         return memberRepository.findAll();
     }
 
-    public Optional<Member> login(MemberForm.Request.Add member) {
+    public Optional<Member> login(MemberForm.Request.Login member) {
         Optional<Member> optionalMember = findByMemberId(member.getMemberId());
 
         if (optionalMember.isPresent()) {

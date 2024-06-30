@@ -21,5 +21,23 @@ public class MemberForm {
             private String lockYn;
             private String regId;
         }
+
+        @Entity
+        @Getter
+        @Setter
+        public static class Login{
+            @Id
+            private String memberId;
+            private String password;
+        }
+        @Entity
+        @Getter
+        @Setter
+        public static class Search{
+            @Id
+            private String memberId;
+            private String searchName;
+
+        }
     }
 }

@@ -1,4 +1,4 @@
-package com.project.plus_keeper.error;
+package com.project.plus_keeper.response;
 
 import lombok.Getter;
 
