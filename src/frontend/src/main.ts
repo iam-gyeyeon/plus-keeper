@@ -7,7 +7,6 @@ import '@/scss/style.scss';
 import PerfectScrollbar from 'vue3-perfect-scrollbar';
 import VueApexCharts from 'vue3-apexcharts';
 import VueTablerIcons from 'vue-tabler-icons';
-
 import { fakeBackend } from '@/utils/helpers/fake-backend';
 
 // print

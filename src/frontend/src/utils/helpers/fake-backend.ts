@@ -43,7 +43,7 @@ function fakeBackend() {
       function authenticate() {
         const { username, password } = body();
         const user = users.find((x) => x.username === username && x.password === password);
-        if (!user) return error('Username or password is incorrect');
+        if (!user) return error('아이디 혹은 비밀번호가 일치하지 않습니다.');
         return ok({
           id: user.id,
           username: user.username,

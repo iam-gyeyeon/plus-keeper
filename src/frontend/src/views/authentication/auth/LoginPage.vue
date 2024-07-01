@@ -19,7 +19,7 @@ import AuthLogin from '../authForms/AuthLogin.vue';
                       <v-col cols="12" class="text-center">
                         <Logo />
                         <h2 class="text-secondary text-h2 mt-8">PLUS KEEPER</h2>
-                        <h4 class="text-disabled text-h4 mt-3">개인 자산 관리 시스템(가제)</h4>
+                        <h4 class="text-disabled text-h4 mt-3">개인 자산 관리 시스템(가제)</h4>
                       </v-col>
                     </v-row>
                     <!---Left Part Logo -->
